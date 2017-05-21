@@ -97,14 +97,14 @@ class UserController extends ApiController
 
         if ($request->has('admin')) {
             if(!$user->isVerified()) {
-                return response()->json(['error' => 'Solo los usuarios verificados pueden realizar esta acción','code' => 409], 409);
+                return $this->errorResponse('Solo los usuarios verificados pueden realizar esta acción','code', 409);
             }
             
             $user->admin = $request->admin;
         }
 
         if (!$user->isDirty()) {
-            return response()->json(['error' => 'Se debe especificar al menos un valor diferente para actualizar', 'code' => 422], 422);
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
         }
 
         $user->save();
