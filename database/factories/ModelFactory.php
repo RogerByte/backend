@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Seller;
 use App\Product;
 use App\Category;
 use App\Transaction;
@@ -26,8 +27,8 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
         'verified' => $verified = $faker->randomElement([User::USER_VERIFIED, User::USER_NOT_VERIFIED]),
-        'verificacion_token' => $verified == User::USER_VERIFIED ? null : User::createVerifyToken(),
-        'admin' => $faker->randomElement([User::USER_ADMIN,User::USER_REGULAR])
+        'verification_token' => $verified == User::USER_VERIFIED ? null : User::createVerifyToken(),
+        'admin' => $faker->randomElement([User::USER_ADMIN, User::USER_REGULAR])
     ];
 });
 
@@ -42,10 +43,10 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word,
         'description' => $faker->paragraph(1),
-        'quantity' => $faker->numberBetwenn(1,10),
-        'status' => $faker->randomElement([Product::PRODUCT_AVAILABLE, Product::PRODUCT_UNAVALIABLE]),
-        'img' => $faker->randomElement(['1.jpg','4.jpg','3.jpg']),
-        'seller_id' => User::all()random()->id,
+        'quantity' => $faker->numberBetween(1,10),
+        'status' => $faker->randomElement([Product::PRODUCT_AVAILABLE, Product::PRODUCT_UNAVAILABLE]),
+        'image' => $faker->randomElement(['1.jpg','4.jpg','3.jpg']),
+        'seller_id' => User::all()->random()->id,
     ];
 });
 
