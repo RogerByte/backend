@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 	const PRODUCT_AVAILABLE = '1';
-	const PRODUCT_UNAVALIABLE = '0';
+	const PRODUCT_UNAVAILABLE = '0';
 
 	protected $fillable = [
 		'name',
