@@ -40,7 +40,7 @@ class SellerProductController extends ApiController
 
         $this->validate($request, $rules);
 
-        $data = request->all();
+        $data = $request->all();
 
         $data['status'] = Product::PRODUCT_UNAVAILABLE;
         $data['image'] = '0.jpg';
@@ -107,7 +107,7 @@ class SellerProductController extends ApiController
         return $this->showOne($product);
     }
 
-    protected verifySeller(Seller $seller, Product $product) 
+    protected function verifySeller(Seller $seller, Product $product) 
     {
         if ($seller->id != $product->seller_id) {
             throw new HttpException(422, 'El vendedor especificado no es el vendedor real del producto');
